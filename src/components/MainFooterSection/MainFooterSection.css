@@ -2,40 +2,49 @@
   background-color: #1a202c;
   color: #a0aec0;
   padding: 40px 20px;
+  text-align: center; /* Center the logo and branding */
+}
+
+.mainFooter__header {
+  margin-bottom: 40px; /* Add space between the header and columns */
+}
+
+.mainFooter__logo {
+  width: 50px;
+  height: auto;
+  margin-bottom: 10px; /* Add spacing below the logo */
+}
+
+.mainFooter__brand {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.mainFooter__credit {
+  font-size: 14px;
+  color: #a0aec0;
 }
 
 .mainFooter__container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px; /* Optional for spacing between columns */
+  text-align: left; /* Align column text to the left */
 }
 
 .mainFooter__column {
-  flex: 1;
-  text-align: left;
-  margin: 0 10px;
-}
-
-.mainFooter__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-
-.mainFooter__brand-logo {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 8px;
+  flex: 1 1 200px;
+  margin-bottom: 20px;
 }
 
 .mainFooter__title {
   color: #ffffff;
   font-size: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-weight: bold;
 }
 
@@ -60,18 +69,21 @@
   color: #ffffff;
 }
 
+/* Responsive Design for Tablets */
 @media (max-width: 768px) {
   .mainFooter__container {
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Center columns on smaller screens */
   }
 
   .mainFooter__column {
-    margin-bottom: 20px;
-    text-align: center;
+    flex-basis: 100%;
+    text-align: center; /* Center align column content */
+    margin-bottom: 30px;
   }
 }
 
+/* Responsive Design for Mobile */
 @media (max-width: 480px) {
   .mainFooter {
     padding: 30px 15px;
@@ -82,6 +94,10 @@
   }
 
   .mainFooter__link {
+    font-size: 12px;
+  }
+
+  .mainFooter__credit {
     font-size: 12px;
   }
 }
