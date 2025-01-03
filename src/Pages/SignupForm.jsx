@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import API_ENDPOINTS from '../config/api';
+import API_ENDPOINTS from '../config/api'; // Ensure this has the correct API URL
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -58,8 +58,9 @@ export default function SignupForm({ onToggle }) {
     }
 
     try {
+      // Update the API URL in case it's incorrect
       const response = await axios.post(
-        API_ENDPOINTS.apiAuthRegisterPost,
+        API_ENDPOINTS.apiAuthRegisterPost, // This should be the correct URL for your backend
         {
           name: formData.name,
           email: formData.email,
@@ -73,12 +74,17 @@ export default function SignupForm({ onToggle }) {
 
       toast.success('Signup successful! Redirecting...', {
         onClose: () => {
-          navigate('/');
+          navigate('/'); // Redirect after successful signup
         }
       });
     } catch (error) {
+      // Handle different error cases
       console.error('Signup error:', error.response?.data || error.message);
-      toast.error(error.response?.data?.message || 'An error occurred during signup');
+      if (error.response?.status === 405) {
+        toast.error('Method not allowed. Please check the API URL or request method.');
+      } else {
+        toast.error(error.response?.data?.message || 'An error occurred during signup');
+      }
     }
   };
 
