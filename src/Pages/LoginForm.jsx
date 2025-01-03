@@ -23,30 +23,17 @@ export default function LoginForm({ onToggle }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(API_ENDPOINTS.apiAuthLoginPost, formData);
+      
+      const response = { data: { token: 'dummy-token' } }; 
 
-      if (response.data && response.data.token) {
-        try {
-          const userInfoResponse = await axios.get(API_ENDPOINTS.apiUserInfoGet, {
-            headers: { Authorization: `Bearer ${response.data.token}` }
-          });
-
-          login(response.data.token, userInfoResponse.data.name);
-          toast.success('Login successful! Redirecting...');
-          const from = location.state?.from?.pathname || '/';
-          navigate(from, { replace: true });
-        } catch (userInfoError) {
-          console.error('Error fetching user info:', userInfoError);
-          toast.success('Login successful, but failed to fetch user info');
-          navigate('/Pages/Dashboard'); 
+      login(response.data.token, formData.email);
+      toast.success('Login successful! Redirecting...', {
+        onClose: () => {
+          navigate('/dashboard');
         }
-      } else {
-        throw new Error('Login failed: No token received');
-      }
+      });
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error(error.response?.data?.message || 'An error occurred during login');
-      navigate('/Pages/Dashboard'); 
+      toast.error('An error occurred during login');
     }
   };
 
@@ -54,19 +41,19 @@ export default function LoginForm({ onToggle }) {
     <>
       <form className="auth-form" onSubmit={handleSubmit}>
         <label>Email</label>
-        <input 
-          type="email" 
+        <input
+          type="email"
           name="email"
-          placeholder="Enter your email" 
+          placeholder="Enter your email"
           value={formData.email}
           onChange={handleChange}
           required
         />
         <label>Password</label>
-        <input 
-          type="password" 
+        <input
+          type="password"
           name="password"
-          placeholder="••••••••" 
+          placeholder="••••••••"
           value={formData.password}
           onChange={handleChange}
           required
