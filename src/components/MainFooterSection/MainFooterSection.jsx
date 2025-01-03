@@ -20,27 +20,25 @@ const MainFooterSection = () => {
 
   return (
     <footer className="mainFooter">
-      {/* Logo and Title Section */}
+      {/* Logo and Brand Section */}
       <div className="mainFooter__header">
-        <img src={logo} alt="Triangle" className="mainFooter__logo" />
+        <img src={logo} alt="FormBot Logo" className="mainFooter__logo" />
         <h4 className="mainFooter__brand">FormBot</h4>
         <p className="mainFooter__credit">Made with ❤️ by Cuvette</p>
       </div>
 
-      {/* Footer Columns */}
+      {/* Footer Columns Section */}
       <div className="mainFooter__container">
         {footerColumns.map((column, index) => (
           <div key={index} className="mainFooter__column">
-            <h3 className="mainFooter__title">{column.title}</h3>
-            {column.links.length > 0 && (
-              <ul className="mainFooter__list">
-                {column.links.map((link, linkIndex) => (
-                  <li key={linkIndex} className="mainFooter__item">
-                    <a href="#" className="mainFooter__link">{link}</a>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <h4 className="mainFooter__title">{column.title}</h4>
+            <ul className="mainFooter__list">
+              {column.links.map((link, linkIndex) => (
+                <li key={linkIndex} className="mainFooter__item">
+                  <a href="#" className="mainFooter__link">{link}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

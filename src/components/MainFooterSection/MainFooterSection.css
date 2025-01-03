@@ -2,24 +2,24 @@
   background-color: #1a202c;
   color: #a0aec0;
   padding: 40px 20px;
-  text-align: center; /* Center the logo and branding */
 }
 
 .mainFooter__header {
-  margin-bottom: 40px; /* Add space between the header and columns */
+  text-align: left;
+  margin-bottom: 40px;
 }
 
 .mainFooter__logo {
-  width: 50px;
-  height: auto;
-  margin-bottom: 10px; /* Add spacing below the logo */
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
 }
 
 .mainFooter__brand {
-  color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-  margin: 5px 0;
+  color: #ffffff;
+  margin: 0;
 }
 
 .mainFooter__credit {
@@ -31,25 +31,26 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  text-align: left; /* Align column text to the left */
+  align-items: flex-start;
+  gap: 20px; /* Consistent spacing between columns */
 }
 
 .mainFooter__column {
-  flex: 1 1 200px;
-  margin-bottom: 20px;
+  flex: 1;
+  text-align: left;
+  margin: 0 10px;
 }
 
 .mainFooter__title {
-  color: #ffffff;
   font-size: 16px;
-  margin-bottom: 16px;
   font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 12px;
 }
 
 .mainFooter__list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -59,9 +60,9 @@
 }
 
 .mainFooter__link {
-  color: #a0aec0;
-  text-decoration: none;
   font-size: 14px;
+  text-decoration: none;
+  color: #a0aec0;
   transition: color 0.3s ease;
 }
 
@@ -73,12 +74,12 @@
 @media (max-width: 768px) {
   .mainFooter__container {
     flex-direction: column;
-    align-items: center; /* Center columns on smaller screens */
+    align-items: center;
   }
 
   .mainFooter__column {
     flex-basis: 100%;
-    text-align: center; /* Center align column content */
+    text-align: center;
     margin-bottom: 30px;
   }
 }
