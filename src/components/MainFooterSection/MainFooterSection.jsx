@@ -8,16 +8,16 @@ const MainFooterSection = () => {
       links: []
     },
     {
-      title: 'Status',
-      links: ['Documentation', 'Roadmap', 'Pricing']
+      title: 'Product',
+      links: ['Status', 'Documentation', 'Roadmap', 'Pricing']
     },
     {
-      title: 'Discord',
-      links: ['GitHub repository', 'Twitter', 'LinkedIn', 'OSS Friends']
+      title: 'Community',
+      links: ['Discord', 'GitHub repository', 'Twitter', 'LinkedIn', 'OSS Friends']
     },
     {
-      title: 'About',
-      links: ['Contact', 'Terms of Service', 'Privacy Policy']
+      title: 'Company',
+      links: ['About', 'Contact', 'Terms of Service', 'Privacy Policy']
     }
   ];
 
