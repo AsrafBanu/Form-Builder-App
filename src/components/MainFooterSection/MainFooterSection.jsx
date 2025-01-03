@@ -1,9 +1,15 @@
 import React from 'react';
 import './MainFooterSection.css';
+import logo from '../../assets/images/logo.svg';
+
+
 
 const MainFooterSection = () => {
   const footerColumns = [
+    
     {
+
+      
       title: 'Made with ❤️ by Cuvette',
       links: []
     },
@@ -22,8 +28,10 @@ const MainFooterSection = () => {
   ];
 
   return (
+    
     <footer className="mainFooter">
       <div className="mainFooter__container">
+        <div><img src={logo} alt="Triangle" /></div> <div><h4>FormBot</h4></div>
         {footerColumns.map((column, index) => (
           <div key={index} className="mainFooter__column">
             <h3 className="mainFooter__title">{column.title}</h3>
