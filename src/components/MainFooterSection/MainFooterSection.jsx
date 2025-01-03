@@ -4,7 +4,7 @@ import './MainFooterSection.css';
 const MainFooterSection = () => {
   const footerColumns = [
     {
-      title: 'Made with ❤️ by Baptiste',
+      title: 'Made with ❤️ by \n Cuvette',
       links: []
     },
     {
