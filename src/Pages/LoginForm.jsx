@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API_ENDPOINTS from '../config/api';
 import { useAuth } from '../context/AuthContext';
 
@@ -12,7 +12,6 @@ export default function LoginForm({ onToggle }) {
     password: '',
   });
   const navigate = useNavigate();
-  const location = useLocation();
   const { login } = useAuth();
 
   const handleChange = (e) => {
@@ -26,22 +25,10 @@ export default function LoginForm({ onToggle }) {
       const response = await axios.post(API_ENDPOINTS.apiAuthLoginPost, formData);
 
       if (response.data && response.data.token) {
-        try {
-          const userInfoResponse = await axios.get(API_ENDPOINTS.apiUserInfoGet, {
-            headers: { Authorization: `Bearer ${response.data.token}` }
-          });
-
-          login(response.data.token, userInfoResponse.data.name);
-          toast.success('Login successful! Redirecting...', {
-            onClose: () => {
-              const from = location.state?.from?.pathname || '/';
-              navigate(from, { replace: true });
-            }
-          });
-        } catch (userInfoError) {
-          console.error('Error fetching user info:', userInfoError);
-          toast.error('Login successful, but failed to fetch user info');
-        }
+        login(response.data.token, formData.email);
+        toast.success('Login successful! Redirecting...', {
+          onClose: () => navigate('/'), // Directly navigate to homepage after login
+        });
       } else {
         throw new Error('Login failed: No token received');
       }
@@ -50,6 +37,7 @@ export default function LoginForm({ onToggle }) {
       toast.error(error.response?.data?.message || 'An error occurred during login');
     }
   };
+
   return (
     <>
       <form className="auth-form" onSubmit={handleSubmit}>
