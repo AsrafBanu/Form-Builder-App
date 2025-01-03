@@ -32,9 +32,10 @@ const MainFooterSection = () => {
     <footer className="mainFooter">
       
       <div className="mainFooter__container">
-      <div><img src={logo} alt="Triangle" /></div> <div><h4>FormBot</h4></div> <br></br>
+      
         {footerColumns.map((column, index) => (
           <div key={index} className="mainFooter__column">
+            <div><img src={logo} alt="Triangle" /></div> <div><h4>FormBot</h4></div> 
             <h3 className="mainFooter__title">{column.title}</h3>
             {column.links.length > 0 && (
               <ul className="mainFooter__list">
