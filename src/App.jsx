@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';  // Change here
 import axios from 'axios';
 import { AuthProvider } from './context/AuthContext';
 import LoginForm from './Pages/LoginForm';
@@ -15,7 +15,6 @@ import { setupAxiosInterceptors } from './utils/axiosConfig';
 import Home from './Pages';
 import UserProfile from './Pages/UserProfile';
 import ChatBot from './Pages/chatBot/chatBot';
-import { useAuth } from './context/AuthContext';
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -38,11 +37,10 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <Router>
+      <Router> {/* Changed from BrowserRouter to HashRouter */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<UserProfile />} />
-          
           <Route path="/auth" element={
             <div className="container">
               <BackButton />
@@ -61,7 +59,6 @@ export default function App() {
           <Route path='/response' element={<ResponsePage />} />
           <Route path="/response/:formId" element={<ResponsePage />} />
           <Route path='/chat' element={<ChatBot />} />
-          {/* <Route path="/api/forms/public/:formId" element={<ChatBot />} /> */}
           <Route path="/chat/:formId" element={<ChatBot />} />
         </Routes>
       </Router>
