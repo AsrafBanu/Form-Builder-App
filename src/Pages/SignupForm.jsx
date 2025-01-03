@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 import API_ENDPOINTS from '../config/api';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignupForm({ onToggle }) {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export default function SignupForm({ onToggle }) {
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const validateField = (name, value) => {
     switch (name) {
@@ -36,9 +38,14 @@ export default function SignupForm({ onToggle }) {
     setErrors({ ...errors, [name]: validateField(name, value) });
   };
 
+  useEffect(() => {
+    setErrors({ ...errors, confirmPassword: validateField('confirmPassword', formData.confirmPassword) });
+  }, [formData.password]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate all fields
     const formErrors = Object.keys(formData).reduce((acc, key) => {
       const error = validateField(key, formData[key]);
       if (error) acc[key] = error;
@@ -51,19 +58,21 @@ export default function SignupForm({ onToggle }) {
     }
 
     try {
-      const response = await axios.post(API_ENDPOINTS.apiAuthRegisterPost, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      });
-
-      console.log('Signup successful:', response.data);
-      toast.success('Signup successful! Redirecting...', {
-        onClose: () => navigate('/'), // Directly navigate to homepage after signup
-      });
+      const response = await axios.post(
+        API_ENDPOINTS.apiAuthRegisterPost,
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
+      login(response.data.token, formData.name);
+      toast.success('Signup successful! Redirecting...');
+      navigate('/'); // Redirect to the home page or another page
     } catch (error) {
       console.error('Signup error:', error.response?.data || error.message);
       toast.error(error.response?.data?.message || 'An error occurred during signup');
+      navigate('/'); // Redirect to home page even on error to prevent stuck state
     }
   };
 
