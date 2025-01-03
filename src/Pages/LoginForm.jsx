@@ -38,7 +38,7 @@ export default function LoginForm({ onToggle }) {
         } catch (userInfoError) {
           console.error('Error fetching user info:', userInfoError);
           toast.success('Login successful, but failed to fetch user info');
-          navigate('/dashboard'); 
+          navigate('/Dashboard'); 
         }
       } else {
         throw new Error('Login failed: No token received');
@@ -46,7 +46,7 @@ export default function LoginForm({ onToggle }) {
     } catch (error) {
       console.error('Login error:', error);
       toast.error(error.response?.data?.message || 'An error occurred during login');
-      navigate('/dashboard'); 
+      navigate('/Dashboard'); 
     }
   };
 
