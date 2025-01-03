@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';  // Change here
+import { HashRouter as Router, Route, Routes, HashRouter } from 'react-router-dom';  // Change here
 import axios from 'axios';
 import { AuthProvider } from './context/AuthContext';
 import LoginForm from './Pages/LoginForm';
@@ -37,7 +37,7 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <Router> {/* Changed from BrowserRouter to HashRouter */}
+      <HashRouter> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<UserProfile />} />
@@ -61,7 +61,7 @@ export default function App() {
           <Route path='/chat' element={<ChatBot />} />
           <Route path="/chat/:formId" element={<ChatBot />} />
         </Routes>
-      </Router>
+      </HashRouter>
     </AuthProvider>
   );
 }
