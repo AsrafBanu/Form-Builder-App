@@ -28,7 +28,6 @@ const MainNav = () => {
         <span></span>
       </button>
       <div className={`MainNav__links ${isMenuOpen ? 'MainNav__links--open' : ''}`}>
-        <Link to="/" className="MainNav__link" onClick={toggleMenu}>Home</Link>
         
         {isLoggedIn ? (
           <>
