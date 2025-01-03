@@ -30,8 +30,9 @@ const MainFooterSection = () => {
   return (
     
     <footer className="mainFooter">
+      <div><img src={logo} alt="Triangle" /></div> <div><h4>FormBot</h4></div>
       <div className="mainFooter__container">
-        <div><img src={logo} alt="Triangle" /></div> <div><h4>FormBot</h4></div>
+        
         {footerColumns.map((column, index) => (
           <div key={index} className="mainFooter__column">
             <h3 className="mainFooter__title">{column.title}</h3>
